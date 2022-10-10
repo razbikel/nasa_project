@@ -18,17 +18,23 @@ const httpAddNewLaunches = (async (req, res) => {
                 "error": "Invalid launchDate"
             })
         }
-        // addNewLaunch(launch);
         await scheduleNewLaunch(launch)
         return res.status(201).json(launch);
     }
 })
 
-const httpDeleteNewLaunches = ((req,res) => {
+const httpDeleteNewLaunches = (async (req,res) => {
     const id = Number(req.params.id);
-    if(existsLaunchWithId(id)){
-        let aborted = deleteNewLaunch(id);
-        res.status(200).json(aborted)
+    if(await existsLaunchWithId(id)){
+        let aborted = await deleteNewLaunch(id);
+        if(!aborted){
+            res.status(400).json({
+                error: 'Launch not aborted!'
+            })
+        }
+        res.status(200).json({
+            ok: true
+        })
     }
     else{
         res.status(404).json({
