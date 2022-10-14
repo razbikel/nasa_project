@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 8000;
 const server = http.createServer(app);
 
 const run_server = async () => {
+    console.log('process.env.NODE_ENV', process.env.NODE_ENV)
     await mongoConnect();
     await load_planets();
     server.listen(PORT, () => {

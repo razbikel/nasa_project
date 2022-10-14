@@ -1,7 +1,9 @@
 const axios = require('axios')
 
+const API_URL = `http://localhost:8000/v1`
+
 async function httpGetPlanets() {
-  const response = await axios.get('http://localhost:8000/planets');
+  const response = await axios.get(`${API_URL}/planets`);
   return response.data
 
   // TODO: Once API is ready.
@@ -9,7 +11,7 @@ async function httpGetPlanets() {
 }
 
 async function httpGetLaunches() {
-  const response = await axios.get('http://localhost:8000/launches');
+  const response = await axios.get(`${API_URL}/launches`);
   const launches = await response.data;
   return launches.sort((a,b) => {
     return a.flightNumber - b.flightNumber
@@ -18,7 +20,8 @@ async function httpGetLaunches() {
 
 async function httpSubmitLaunch(launch) {
   try{
-    return await axios.post('http://localhost:8000/launches', launch);
+    
+    return await axios.post(`${API_URL}/launches`, launch);
 
   }
   catch(error){
@@ -30,7 +33,7 @@ async function httpSubmitLaunch(launch) {
 
 async function httpAbortLaunch(id) {
   try{
-    return await axios.delete(`http://localhost:8000/launches/${id}`);
+    return await axios.delete(`${API_URL}/launches/${id}`);
 
   }
   catch(error){

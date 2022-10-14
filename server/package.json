@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest",
     "test-watch": "jest --watch",
-    "start": "node src/server.js",
-    "watch": "nodemon src/server.js",
+    "start": "NODE_ENV=production node src/server.js",
+    "watch": "NODE_ENV=development nodemon src/server.js",
     "cluster": "pm2 start src/server.js -i max"
   },
   "author": "",
