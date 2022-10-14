@@ -52,7 +52,6 @@ const existsLaunchWithId = async (launchId) => {
 }
 
 const getAllLaunches = async () => {
-    // return Array.from(launches.values())
     return await launchesDataBase.find({}, {
         '__v':0, '_id': 0
     })
