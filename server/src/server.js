@@ -1,3 +1,4 @@
+require('dotenv').config();
 const app = require('../src/app');
 const http = require('http');
 const {load_planets} = require('../src/models/planets.model')

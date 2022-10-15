@@ -25,18 +25,6 @@ const getLatestFlightNumber = async () => {
     }
 }
 
-const launch = {
-    flightNumber: 100,
-    mission:'Kepler Exploration X',
-    rocket:'Explorer IS1',
-    launchDate: new Date('December 27 2040'),
-    target: 'kepler 442-b',
-    customers: ['NASA', 'ZTM'],
-    upcoming: true,
-    success: true
-}
-
-saveLaunch(launch)
 
 const existsLaunchWithId = async (launchId) => {
     return await findLaunch({
@@ -44,10 +32,13 @@ const existsLaunchWithId = async (launchId) => {
     })
 }
 
-const getAllLaunches = async () => {
+const getAllLaunches = async (skip, limit) => {
     return await launchesDataBase.find({}, {
         '__v':0, '_id': 0
     })
+    .sort({ flightNumber: 1 })
+    .skip(skip)
+    .limit(limit)
 }
 
 
